@@ -50,8 +50,8 @@ int main()
     processInput(window); // Processes the last reported input states
     
     // Rendering
-    glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.3f, 0.3f, 0.5f, 1.0f); // Sets the state
+    glClear(GL_COLOR_BUFFER_BIT); // Uses the state
 
     glfwSwapBuffers(window);
     glfwPollEvents(); // Obtains the input states 
