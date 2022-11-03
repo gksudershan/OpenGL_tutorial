@@ -1,0 +1,78 @@
+OpenGL graphic processing:
+-------------------------
+
+OpenGL converts 3D coordinates to 2D colored pixels on screen.
+This process is divided into two main parts:
+
+1. Conversion of 3D coordinates into 2D coordinates.
+2. Conversion of 2D coordinates into colored pixels.
+
+In reality, there are several other steps in this graphics pipeline.
+Each of these steps can be run in parallel.
+
+Shaders:
+-------
+These are small programs dedicated for each of the steps in the graphics pipeline.
+
+Vertex:
+------
+Collection of data describing a 3D coordinate. (e.g. position, color of a 3D coordinate).
+
+Vertex data:
+-----------
+Collection of vertices.
+
+Vertex attributes:
+-----------------
+Position, color, etc., of a 3D coordinate.
+
+----------------------------------------------------------------------------------------------
+
+Main steps in the graphics pipeline:
+-----------------------------------
+
+1. Vertex shader:
+----------------
+Takes input vertex data and does some basic processing on the vertex attributes.
+
+2. Primitive assembly or Shape assembly:
+---------------------------------------
+Takes processed vertex data and forms a primitive in the primitive shape specifed.
+
+3. Geometry shader:
+------------------
+Takes as input the vertex data that now form a primitive and add new vertices to form new
+primitives.
+
+4. Rasterization:
+----------------
+Takes the output of geometry shader, maps the resulting primitive(s) to the corresponding
+pixels on the final screen, resulting in fragments for the fragment shader to use.
+
+Fragment:
+--------
+A fragment in OpenGL is all the data required for OpenGL to render a single pixel.
+
+5. Fragment shader:
+------------------
+Calculates the final color of a pixel based on data (like lights, shadows, etc.,)
+about the 3D scene. Before the fragment shaders run, clipping is performed.
+
+Clipping:
+--------
+Discards all fragments outside the view, increasing performance.
+
+6. Alpha test & blending:
+------------------------
+When multiple primitives are rendered, this stage checks the depth, alpha and blends
+the objects accordingly.
+
+Most of the times, we are required to define at least a vertex and fragment shader of our own.
+
+----------------------------------------------------------------------------------------------
+
+Vertex Buffer Objects (VBO):
+---------------------------
+These store a large number of vertices in the GPU's memory. Since transfer of data from CPU to
+graphics card is relatively slow, it is advantageous to store the vertices in VBOs so that the
+vertex shader can have almost instant access to the vertices making it extremely fast.
